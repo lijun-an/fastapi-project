@@ -1,14 +1,11 @@
 from pydantic import BaseModel
-
-
-class Login(BaseModel):
-    username: str
-    password: str
+from core.Auth import create_access_token
 
 
 def register(age: int):
     return {'age': age}
 
 
-def login(data: Login):
-    return '登录'
+def login(data: dict):
+    token = create_access_token(data)
+    return {"token": token}
